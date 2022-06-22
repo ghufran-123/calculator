@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body style="display: flex; align-items: center; justify-content: center;">
+    <h1 id="ans">
+        0
+    </h1>
+    <div class="margin">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="operators" id="AC">AC</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="equal">=</div>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="num" id="7">7</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="8">8</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="9">9</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="*">X</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="num" id="4">4</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="5">5</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="6">6</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="/">/</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="num" id="1">1</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="2">2</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="3">3</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="-">-</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="num" id="0">0</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id=".">.</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="per">%</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="+">+</div>
+            </div>
+        </div>
+
+        
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</body>
+<script>
+    var num=0,ans=0,mul=1,a="",operator="",op="";
+    $(".num").click(function(e)
+    {
+        num=Number(this.id);
+        console.log(num);
+        a+=num;
+        $("#ans").text(a);
+    })
+    $(".operators").click(function(e)
+    {
+        operator=(this.id);
+        if(operator=="equal")
+        {
+            a+="=";
+        }
+        else if(operator=="per")
+        {
+            num=Number(a);
+            console.log(num);
+            a+="%";
+        }
+        else{
+            a+=operator;   
+        }
+        console.log(a)
+        $("#ans").text(a);
+        console.log(operator);
+        if(operator=="+")
+        {
+            console.log(num);
+            console.log(ans);
+            ans=Number(ans)+Number(num);
+            op="+";
+        }
+        else if(operator=="-")
+        {
+            ans=num-ans;
+            op="-";
+        }
+        else if(operator=="*")
+        {
+            mul=mul*num;
+            ans=mul;
+            op="*";
+        }
+        else if(operator=="/")
+        {
+            ans=num;
+            op="/";
+        }
+        else if(operator=="per")
+        {
+            ans=num/100;
+            $("#ans").text(ans);
+
+            // op="%";
+        }
+        
+        else if(operator=="equal"){
+            switch (op)     
+            {
+                case "+":
+                    ans+=num;
+                    break;
+                case "-":
+                    ans-=num;
+                    break;
+                case "*":
+                    ans*=num;
+                    break;
+                case "/":
+                    ans/=num;
+                    break;
+            }
+            $("#ans").text(ans);
+        }
+        else if(operator=="AC")
+        {
+            num=0,ans=0,mul=1,a="",operator="",op="";
+            $("#ans").text(a);
+                 
+        }
+        
+    })
+
+
+</script>
+</html>
