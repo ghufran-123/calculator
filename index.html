@@ -4,93 +4,181 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simon Game</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
-<body>
-        <div style="display: flex; align-items: center; justify-content: center;">
-            <div class="bigCircle">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="box bx1" id="1" onclick="check(1)" style="margin-bottom: 10%;"></div>
-                        <div class="box bx2" id="2" onclick="check(2)" style="margin-top: 10%"></div>
-                    </div>
-                    <div class="col-6">
-                        <div class="box bx3" id="3" onclick="check(3)" style="margin-bottom: 10%;"></div>
-                        <div class="box bx4" id="4" onclick="check(4)" style="margin-top: 10%"></div>
-                    </div>
+<body style="display: flex; align-items: center; justify-content: center;">
+    <h1 id="ans">
+        0
+    </h1>
+    <div class="margin">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="operators" id="AC">AC</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="equal">=</div>
             </div>
         </div>
-    </div>
-    <h1 id="lev">Level:- 1</h1>
-    <div style="display: flex; align-items: center; justify-content: center;">
-        <button onclick="random()" class="btn btn-primary" id="start">Start</button>
-    </div>
-        
 
+        
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="num" id="7">7</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="8">8</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="9">9</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="*">X</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="num" id="4">4</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="5">5</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="6">6</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="/">/</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="num" id="1">1</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="2">2</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id="3">3</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="-">-</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="num" id="0">0</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="num" id=".">.</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="per">%</div>
+            </div>
+            <div class="col-lg-3">
+                <div class="operators" id="+">+</div>
+            </div>
+        </div>
+
+        
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </body>
 <script>
-
-    var randomNumArr=[],checkArr=[];
-    var a=0;
-    function random()
+    var num=0,ans=0,mul=1,a="",operator="",op="";
+    $(".num").click(function(e)
     {
-        randomNumArr=[];
-        console.log(randomNumArr)
-        for(var i=0;i<4;i++)
-        {
-            randomNumArr.push(Math.round(Math.random()*4));
-            if(randomNumArr[i]==0)
-            {
-                randomNumArr[i]++;
-            }
-            a=randomNumArr[i];
-            console.log(randomNumArr);
-        }
-        for(var i=0;i<4;i++)
-        {
-            a=randomNumArr[i];
-            $("#"+a).removeClass("bx"+a).delay(2000);
-            $("#"+a).addClass("bx"+a);
-            
-
-        }
-    }
-    var lev=1;
-    function check(id)
+        num=Number(this.id);
+        console.log(num);
+        a+=num;
+        $("#ans").text(a);
+    })
+    $(".operators").click(function(e)
     {
-        var b=0;
-        checkArr.push(id);
-        console.log(id);
-        a++;
-        if(checkArr.length==randomNumArr.length)
+        operator=(this.id);
+        if(operator=="equal")
         {
-            for(var i=0;i<4;i++)
+            a+="=";
+        }
+        else if(operator=="per")
+        {
+            num=Number(a);
+            console.log(num);
+            a+="%";
+        }
+        else if(operator=="*")
+        {
+            console.log("k,hdsf");
+            a+="X";
+        }
+        else{
+            a+=operator;   
+        }
+        console.log(a)
+        $("#ans").text(a);
+        console.log(operator);
+        if(operator=="+")
+        {
+            console.log(num);
+            console.log(ans);
+            ans=Number(ans)+Number(num);
+            op="+";
+        }
+        else if(operator=="-")
+        {
+            ans=num-ans;
+            op="-";
+        }
+        else if(operator=="*")
+        {
+            mul=mul*num;
+            ans=mul;
+            op="*";
+        }
+        else if(operator=="/")
+        {
+            ans=num;
+            op="/";
+        }
+        else if(operator=="per")
+        {
+            ans=num/100;
+            $("#ans").text(ans);
+
+            // op="%";
+        }
+        
+        else if(operator=="equal"){
+            switch (op)     
             {
-                if(checkArr[i]==randomNumArr[i])
-                {
-                    b++;
-                }
-                else{
-                alert("game over");
-                $("#start").text("Restart");
-                break;
-                }
+                case "+":
+                    ans+=num;
+                    break;
+                case "-":
+                    ans-=num;
+                    break;
+                case "*":
+                    ans*=num;
+                    break;
+                case "/":
+                    ans/=num;
+                    break;
             }
-                
-            checkArr=[];
+            $("#ans").text(ans);
         }
-        if(b==4)
+        else if(operator=="AC")
         {
-            $("#start").text("Next");
-            alert("Level Up");
-            lev++;
-            $("#lev").text("Level:- "+lev);
+            num=0,ans=0,mul=1,a="",operator="",op="";
+            $("#ans").text(a);
+                 
         }
-    }
+        
+    })
+
 
 </script>
 </html>
